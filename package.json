@@ -1,0 +1,23 @@
+{
+  "name": "hackathonproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liveforrluxury-dev/HackathonProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/liveforrluxury-dev/HackathonProject/issues"
+  },
+  "homepage": "https://github.com/liveforrluxury-dev/HackathonProject#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^25.6.0"
+  }
+}
