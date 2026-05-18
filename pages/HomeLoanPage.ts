@@ -18,9 +18,11 @@ export class HomeLoanPage {
 
     readonly totalPayment: Locator;
 
-    readonly pieChart: Locator;
-
     readonly tableRows: Locator;
+
+    readonly excelButton: Locator;
+
+
 
     constructor(page: Page) {
 
@@ -41,9 +43,9 @@ export class HomeLoanPage {
 
         this.totalPayment = page.locator('#emitotalamount span');
 
-        this.pieChart = page.locator('svg');
+        this.tableRows = page.locator('#emipaymenttable table tbody tr');
 
-        this.tableRows = page.locator('#emipaymenttable tbody tr');
+        this.excelButton = page.getByTitle("Download Excel Spreadsheet");
 
     }
 
@@ -51,7 +53,7 @@ export class HomeLoanPage {
         await this.page.goto('/');
     }
 
-    async enterLoanDetails( loanAmount: string, interestRate: string, loanTenure: string ) {
+    async enterLoanDetails(loanAmount: string, interestRate: string, loanTenure: string) {
 
         await this.loanAmountInput.fill(loanAmount);
 
@@ -82,4 +84,18 @@ export class HomeLoanPage {
         return await this.totalPayment.textContent();
     }
 
+    async getFirstRowTableData() {
+
+        // Wait for table visible
+        await this.page.waitForSelector('#emipaymenttable table tbody tr');
+
+        // Get first actual data row
+        const firstRow = this.tableRows.nth(1);
+
+        // Get all cells
+        const cells = await firstRow.locator('td').allTextContents();
+
+        return cells;
+
+    }
 }
